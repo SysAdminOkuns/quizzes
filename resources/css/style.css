@@ -1,34 +1,79 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
-.question {
-    display: none;
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-.question.active {
-    display: block;
+
+h1 {
+    text-align: center;
+    color: #4a4a72;
 }
+
 .options {
-    margin-top: 10px;
+    margin: 20px 0;
 }
-.options input {
-    margin-right: 10px;
+
+.options div {
+    margin: 10px 0;
 }
-.pagination {
-    margin-top: 20px;
-}
-.pagination button {
-    padding: 10px;
-    margin-right: 10px;
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    background-color: #4a4a72;
+    color: white;
+    transition: background-color 0.3s ease;
 }
+
+button:hover {
+    background-color: #363652;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Spacing for pagination */
+}
+
 .timer {
-    font-weight: bold;
+    font-size: 1.2rem;
+    color: #ff5722; /* Color for timer */
     margin-top: 10px;
+    text-align: center;
 }
+
 .correct-answer {
-    color: green;
+    margin-top: 20px;
     font-weight: bold;
-    margin-top: 10px;
-    display: none;
+    color: #4caf50; /* Green for correct answers */
+}
+
+.question-number {
+    font-weight: bold;
+    color: #4a4a72;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.reveal-answer {
+    background-color: #f39c12; /* Different color for reveal button */
+    display: block; /* Display block to ensure it takes full width */
+    margin: 20px auto; /* Centering */
+}
+
+.reveal-answer:hover {
+    background-color: #e67e22; /* Darker shade on hover */
 }

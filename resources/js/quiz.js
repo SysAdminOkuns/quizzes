@@ -1,131 +1,160 @@
-// Data structure for questions
-const quizData = [
+// Questions Data Structure
+const questions = [
     {
         question: "What is the capital of France?",
-        type: "multiple-choice",
-        options: ["A. Berlin", "B. Madrid", "C. Paris", "D. Rome"],
-        correctAnswer: "C"
+        options: ["Berlin", "Madrid", "Paris", "Rome"],
+        answer: ["Paris"],
+        type: "single" // "single" for single choice, "multiple" for multiple select
     },
     {
-        question: "Select the colors in the French flag:",
-        type: "multiple-select",
-        options: ["A. Blue", "B. Green", "C. Red", "D. White"],
-        correctAnswer: ["A", "C", "D"]
+        question: "Which of these are programming languages?",
+        options: ["HTML", "Python", "CSS", "JavaScript"],
+        answer: ["Python", "JavaScript"],
+        type: "multiple"
+    },
+    {
+        question: "Which planet is known as the Red Planet?",
+        options: ["Earth", "Mars", "Venus", "Jupiter"],
+        answer: ["Mars"],
+        type: "single"
+    },
+    {
+        question: "Select the primary colors.",
+        options: ["Red", "Green", "Blue", "Yellow"],
+        answer: ["Red", "Blue", "Yellow"],
+        type: "multiple"
     }
 ];
 
-// JavaScript for Pagination and Timer
-const questionsContainer = document.getElementById('questions-container');
-let currentQuestionIndex = 0;
-const totalQuestions = quizData.length;
-const timePerQuestion = 90; // 1.5 minutes in seconds
-
-// Function to render the question
-function renderQuestion(index) {
-    const questionData = quizData[index];
-    questionsContainer.innerHTML = ''; // Clear previous content
-
-    // Create question text
-    const questionElement = document.createElement('p');
-    questionElement.textContent = `${index + 1}. ${questionData.question}`;
-    questionsContainer.appendChild(questionElement);
-
-    // Create options
-    const optionsContainer = document.createElement('div');
-    optionsContainer.classList.add('options');
-
-    if (questionData.type === 'multiple-choice') {
-        questionData.options.forEach((option, i) => {
-            const optionElement = document.createElement('div');
-            const input = document.createElement('input');
-            input.type = 'radio';
-            input.name = `q${index + 1}`;
-            input.value = String.fromCharCode(65 + i); // A, B, C, D
-
-            optionElement.appendChild(input);
-            optionElement.appendChild(document.createTextNode(` ${option}`));
-            optionsContainer.appendChild(optionElement);
-        });
-    } else if (questionData.type === 'multiple-select') {
-        questionData.options.forEach((option, i) => {
-            const optionElement = document.createElement('div');
-            const input = document.createElement('input');
-            input.type = 'checkbox';
-            input.name = `q${index + 1}`;
-            input.value = String.fromCharCode(65 + i); // A, B, C, D
-
-            optionElement.appendChild(input);
-            optionElement.appendChild(document.createTextNode(` ${option}`));
-            optionsContainer.appendChild(optionElement);
-        });
+// Function to shuffle an array
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
     }
-
-    questionsContainer.appendChild(optionsContainer);
-
-    // Timer element
-    const timerElement = document.createElement('div');
-    timerElement.classList.add('timer');
-    timerElement.id = `timer-${index + 1}`;
-    questionsContainer.appendChild(timerElement);
-
-    // Correct answer element
-    const answerElement = document.createElement('div');
-    answerElement.classList.add('correct-answer');
-    answerElement.id = `answer-${index + 1}`;
-    answerElement.style.display = 'none';
-
-    // Format the correct answer display based on the type
-    if (questionData.type === 'multiple-choice') {
-        answerElement.textContent = `Correct Answer: ${questionData.correctAnswer}`;
-    } else if (questionData.type === 'multiple-select') {
-        answerElement.textContent = `Correct Answer: ${questionData.correctAnswer.join(', ')}`;
-    }
-
-    questionsContainer.appendChild(answerElement);
-
-    // Start the timer
-    startTimer(index);
 }
 
-// Timer function
-function startTimer(index) {
-    const timerElement = document.getElementById(`timer-${index + 1}`);
-    const answerElement = document.getElementById(`answer-${index + 1}`);
-    let timeLeft = timePerQuestion;
+// Shuffle the questions and options
+shuffleArray(questions);
+questions.forEach(question => shuffleArray(question.options));
 
-    // Clear any existing timers
-    clearInterval(timerElement.timer);
+// Variables for quiz functionality
+let currentQuestionIndex = 0;
+let timerInterval;
+const questionsContainer = document.getElementById("questions-container");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+const revealBtn = document.getElementById("reveal-btn"); // Button for manual reveal
 
-    // Update the timer every second
-    timerElement.timer = setInterval(() => {
+// Function to load a question
+function loadQuestion(index) {
+    const questionObj = questions[index];
+    questionsContainer.innerHTML = "";
+
+    // Display question number
+    const questionNumber = document.createElement("p");
+    questionNumber.textContent = `Question ${index + 1} of ${questions.length}`;
+    questionNumber.classList.add("question-number");
+    questionsContainer.appendChild(questionNumber);
+
+    // Display question text
+    const questionText = document.createElement("p");
+    questionText.textContent = questionObj.question;
+    questionsContainer.appendChild(questionText);
+
+    const optionsContainer = document.createElement("div");
+    optionsContainer.classList.add("options");
+
+    questionObj.options.forEach((option, i) => {
+        const optionDiv = document.createElement("div");
+        const optionInput = document.createElement("input");
+        optionInput.type = questionObj.type === "multiple" ? "checkbox" : "radio";
+        optionInput.name = "option";
+        optionInput.value = option;
+        optionInput.id = `option-${index}-${i}`;
+
+        const optionLabel = document.createElement("label");
+        optionLabel.htmlFor = optionInput.id;
+        optionLabel.textContent = option;
+
+        optionDiv.appendChild(optionInput);
+        optionDiv.appendChild(optionLabel);
+        optionsContainer.appendChild(optionDiv);
+    });
+
+    questionsContainer.appendChild(optionsContainer);
+    displayTimer();
+    revealBtn.style.display = "block"; // Show the reveal button
+}
+
+// Function to display the timer
+function displayTimer() {
+    const timerElement = document.createElement("div");
+    timerElement.classList.add("timer");
+    timerElement.textContent = "Time left: 1:30";
+
+    let timeLeft = 90; // 1.5 minutes in seconds
+    clearInterval(timerInterval);
+
+    timerInterval = setInterval(() => {
+        timeLeft--;
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
         timerElement.textContent = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        timeLeft--;
 
-        if (timeLeft < 0) {
-            clearInterval(timerElement.timer);
-            timerElement.textContent = "Time's up!";
-            // Reveal the correct answer
-            answerElement.style.display = 'block';
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            revealAnswer(); // Reveal answer when time elapses
         }
     }, 1000);
+
+    questionsContainer.appendChild(timerElement);
 }
 
-// Event listeners for pagination buttons
-document.getElementById('prev-btn').addEventListener('click', () => {
+// Function to reveal the correct answer
+function revealAnswer() {
+    const questionObj = questions[currentQuestionIndex];
+    const correctAnswerElement = document.createElement("div");
+    correctAnswerElement.classList.add("correct-answer");
+
+    if (questionObj.type === "multiple") {
+        correctAnswerElement.textContent = `Correct answers: ${questionObj.answer.join(", ")}`;
+    } else {
+        correctAnswerElement.textContent = `Correct answer: ${questionObj.answer[0]}`;
+    }
+
+    questionsContainer.appendChild(correctAnswerElement);
+    revealBtn.style.display = "none"; // Hide reveal button after showing answer
+}
+
+// Add functionality to the manual reveal button
+revealBtn.addEventListener("click", () => {
+    clearInterval(timerInterval); // Stop the timer
+    revealAnswer(); // Reveal the answer
+});
+
+// Navigation button functionality
+prevBtn.addEventListener("click", () => {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
-        renderQuestion(currentQuestionIndex);
+        loadQuestion(currentQuestionIndex);
+        nextBtn.disabled = false;
+    }
+    if (currentQuestionIndex === 0) {
+        prevBtn.disabled = true;
     }
 });
 
-document.getElementById('next-btn').addEventListener('click', () => {
-    if (currentQuestionIndex < totalQuestions - 1) {
+nextBtn.addEventListener("click", () => {
+    if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
-        renderQuestion(currentQuestionIndex);
+        loadQuestion(currentQuestionIndex);
+        prevBtn.disabled = false;
+    }
+    if (currentQuestionIndex === questions.length - 1) {
+        nextBtn.disabled = true;
     }
 });
 
-// Initialize the first question
-renderQuestion(currentQuestionIndex);
+// Initial load
+loadQuestion(currentQuestionIndex);
