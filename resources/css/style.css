@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.question {
+    display: none;
+}
+.question.active {
+    display: block;
+}
+.options {
+    margin-top: 10px;
+}
+.options input {
+    margin-right: 10px;
+}
+.pagination {
+    margin-top: 20px;
+}
+.pagination button {
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.timer {
+    font-weight: bold;
+    margin-top: 10px;
+}
+.correct-answer {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+    display: none;
+}
