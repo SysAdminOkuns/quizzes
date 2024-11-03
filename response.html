@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./resources/css/response.css">
+    <title>Student Response Form</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Response Form</h1>
+        <div class="question-number" id="question-number">Question 1 of 4</div>
+        <form id="response-form">
+            <fieldset>
+                <legend>Student Details</legend>
+                <label for="student-name">Name:</label>
+                <input type="text" id="student-name" name="student-name" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Question Type</legend>
+                <label for="question-type-toggle">Toggle Question Type:</label>
+                <input type="checkbox" id="question-type-toggle"> Multiple Select
+            </fieldset>
+
+            <fieldset>
+                <legend>Choose Your Answer(s)</legend>
+                <div class="options-grid" id="options-container">
+                    <div>
+                        <input type="radio" name="answer" value="A" id="optionA" class="radio-answer">
+                        <input type="checkbox" name="answer" value="A" id="optionA-checkbox" class="checkbox-answer">
+                        <label for="optionA">A</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="answer" value="B" id="optionB" class="radio-answer">
+                        <input type="checkbox" name="answer" value="B" id="optionB-checkbox" class="checkbox-answer">
+                        <label for="optionB">B</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="answer" value="C" id="optionC" class="radio-answer">
+                        <input type="checkbox" name="answer" value="C" id="optionC-checkbox" class="checkbox-answer">
+                        <label for="optionC">C</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="answer" value="D" id="optionD" class="radio-answer">
+                        <input type="checkbox" name="answer" value="D" id="optionD-checkbox" class="checkbox-answer">
+                        <label for="optionD">D</label>
+                    </div>
+                </div>
+                <div class="timer" id="timer">Time left: 1:30</div>
+                <div class="pagination">
+                    <button type="button" id="prev-btn" disabled>Previous</button>
+                    <button type="button" id="next-btn">Next</button>
+                </div>
+            </fieldset>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="./resources/js/response.js"></script>
+</body>
+</html>

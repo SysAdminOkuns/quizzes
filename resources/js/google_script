@@ -1,0 +1,33 @@
+function doGet(e) {
+  return HtmlService.createHtmlOutput("Request received");
+}
+
+function doPost(e) {
+  // Open the Google Sheet by ID and get the active sheet
+  var sheet = SpreadsheetApp.openById("1CWWM6z0ykebsYVIgnuyOCTAGELJ_xxaDdDjs3ueyymU").getActiveSheet();
+  
+  // Retrieve data from the POST request
+  var name = e.parameter.name;
+  var answer = e.parameter.answers; // This will now accept multiple answers as a JSON string
+  var currentQuestionIndex = e.parameter.currentQuestionIndex; // Get the current question index
+
+  // Parse the answers from the JSON string
+  try {
+    answer = JSON.parse(answer);
+  } catch (error) {
+    answer = []; // Default to an empty array if parsing fails
+  }
+
+  // Ensure answers is always an array
+  if (!Array.isArray(answer)) {
+    answer = [answer]; // Wrap in an array for uniformity
+  }
+
+  // Append the data to the sheet
+  sheet.appendRow([new Date(), name, answer.join(", "), currentQuestionIndex]); // Include currentQuestionIndex
+
+  // Return a success response in JSON format
+  return ContentService.createTextOutput(
+    JSON.stringify({ "status": "success" })
+  ).setMimeType(ContentService.MimeType.JSON);
+}
