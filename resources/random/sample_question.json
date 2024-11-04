@@ -1,5 +1,6 @@
-// Questions Data Structure
-const questions = [
+// Security and Compliance
+[
+[
     {
         question: "AWS Shield Advanced provides expanded DDoS attack protection for web applications running on which of the following resources? (Select two)",
         options: ["Amazon Route 53", "AWS Elastic Beanstalk", "AWS Global Accelerator", "AWS CloudFormation"],
@@ -76,7 +77,7 @@ const questions = [
         question: "Which of the following AWS services support VPC Endpoint Gateway for a private connection from a VPC? (Select two)",
         options: ["Amazon Elastic Compute Cloud (Amazon EC2)", "Amazon DynamoDB", "Amazon Simple Notification Service (SNS)", "Amazon Simple Queue Service (SQS)", "Amazon Simple Storage Service (Amazon S3)"],
         answer: ["Amazon DynamoDB", "Amazon Simple Storage Service (Amazon S3)"],
-        type: "multiple"
+        type: ""
     },
     {
         question: "A company uses reserved EC2 instances across multiple units with each unit having its own AWS account. However, some of the units under-utilize their reserved instances while other units need more reserved instances. As a Cloud Practitioner, which of the following would you recommend as the most cost-optimal solution?",
@@ -89,119 +90,128 @@ const questions = [
         options: ["AWS Artifact", "AWS Systems Manager", "AWS Secrets Manager", "AWS Trusted Advisor"],
         answer: ["AWS Artifact"],
         type: "single"
-    },
+    }
+],
+
+// Cloud Concepts
+
+[
     {
         question: "Which of the following is CORRECT regarding removing an AWS account from AWS Organizations?",
         options: ["The AWS account must be able to operate as a standalone account. Only then it can be removed from AWS organizations", "Raise a support ticket with AWS Support to remove the account", "The AWS account can be removed from AWS Systems Manager", "The AWS account must not have any Service Control Policies (SCPs) attached to it. Only then it can be removed from AWS organizations"],
-        answer: ["The AWS account must be able to operate as a standalone account. Only then it can be removed from AWS organizations"],
+        answer: ["The AWS account must be able to operate as a standalone account. Only then it can be removed from AWS organizations"]
         type: "single"
     },
     {
         question: "What are the advantages that AWS Cloud offers over a traditional on-premises IT infrastructure? (Select two)",
         options: ["Make a capacity decision before deploying an application, to reduce costs", "Eliminate guessing on your infrastructure capacity needs", "Increase speed and agility by keeping servers and other required resources ready before time in your data centers", "Trade capital expense for variable expense"],
-        answer: ["Eliminate guessing on your infrastructure capacity needs", "Trade capital expense for variable expense"],
+        answer: ["Eliminate guessing on your infrastructure capacity needs", "Trade capital expense for variable expense"]
         type: "multiple"
     },
     {
         question: "Which of the following is an INCORRECT statement about Scaling, a design principle of Reliability pillar of the AWS Well-Architected Framework?",
         options: ["A scale out operation implies you scale by adding more instances to your existing pool of resources", "A scale up operation implies you scale by adding more power (CPU, RAM) to your existing machine/node", "Fault tolerance is achieved by a scale out operation", "Fault tolerance is achieved by a scale up operation"],
-        answer: ["Fault tolerance is achieved by a scale up operation"],
+        answer: ["Fault tolerance is achieved by a scale up operation"]
         type: "single"
     },
     {
         question: "Which of the following AWS services can be used to connect a company's on-premises environment to a VPC without using the public internet?",
         options: ["AWS Direct Connect", "AWS Site-to-Site VPN", "VPC Endpoint", "Internet Gateway"],
-        answer: ["AWS Direct Connect"],
+        answer: ["AWS Direct Connect"]
         type: "single"
     },
     {
         question: "Which option is a common stakeholder role for the AWS Cloud Adoption Framework (AWS CAF) platform perspective? (Select two)",
         options: ["Engineer", "Chief Product Officer (CPO)", "Chief Technology Officer (CTO)", "Chief Information Officer (CIO)"],
-        answer: ["Chief Technology Officer (CTO)", "Engineering"],
+        answer: ["Chief Technology Officer (CTO)", "Engineering"]
         type: "multiple"
     },
     {
         question: "An IT company is planning to migrate from an on-premises environment to AWS Cloud. Which of the following expense areas would result in cost savings when the company moves to AWS Cloud? (Select two)",
         options: ["Data center physical security expenditure", "Data center hardware infrastructure expenditure", "SaaS application license fee", "Developer salary"],
-        answer: ["Data center physical security expenditure", "Data center hardware infrastructure expenditure"],
+        answer: ["Data center physical security expenditure", "Data center hardware infrastructure expenditure"]
         type: "multiple"
     },
     {
         question: "Which type of cloud computing does Amazon Elastic Compute Cloud (EC2) represent?",
         options: ["Network as a Service (NaaS)", "Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)", "Software as a Service (SaaS)"],
-        answer: ["Infrastructure as a Service (IaaS)"],
+        answer: ["Infrastructure as a Service (IaaS)"]
         type: "single"
     },
     {
         question: "Which of the following is a benefit of using AWS managed services such as Amazon Relational Database Service (Amazon RDS)?",
         options: ["The performance of AWS managed Amazon Relational Database Service (Amazon RDS) instance is better than a customer-managed database instance", "The customer needs to patch the underlying OS", "There is no need to optimize database instance type and size", "The customer needs to manage database backups"],
-        answer: ["The performance of AWS managed Amazon Relational Database Service (Amazon RDS) instance is better than a customer-managed database instance"],
+        answer: ["The performance of AWS managed Amazon Relational Database Service (Amazon RDS) instance is better than a customer-managed database instance"]
         type: "single"
     },
     {
         question: "A multi-national company has just moved its infrastructure from its on-premises data center to AWS Cloud. As part of the shared responsibility model, AWS is responsible for which of the following?",
         options: ["Physical and Environmental controls", "Configuring customer applications", "Patching guest OS", "Service and Communications Protection or Zone Security"],
-        answer: ["Physical and Environmental controls"],
+        answer: ["Physical and Environmental controls"]
         type: "single"
     },
     {
         question: "Which of the following statements are CORRECT regarding the AWS VPC service? (Select two)",
         options: ["A network access control list (network ACL) can have allow rules only", "A Security Group can have allow rules only", "A Security Group can have both allow and deny rules", "A Network Address Translation gateway (NAT gateway) is managed by AWS"],
-        answer: ["A Security Group can have allow rules only", "A Network Address Translation gateway (NAT gateway) is managed by AWS"],
+        answer: ["A Security Group can have allow rules only", "A Network Address Translation gateway (NAT gateway) is managed by AWS"]
         type: "multiple"
     },
     {
         question: "A startup wants to migrate its data and applications from the on-premises data center to AWS Cloud. Which of the following options can be used by the startup to help with this migration? (Select two)",
         options: ["Consult moderators on AWS Developer Forums", "Leverage AWS Professional Services to accelerate the infrastructure migration", "Use AWS Trusted Advisor to automate the infrastructure migration", "Utilize AWS Partner Network (APN) to build a custom solution for this infrastructure migration"],
-        answer: ["Leverage AWS Professional Services to accelerate the infrastructure migration", "Utilize AWS Partner Network (APN) to build a custom solution for this infrastructure migration"],
+        answer: ["Leverage AWS Professional Services to accelerate the infrastructure migration", "Utilize AWS Partner Network (APN) to build a custom solution for this infrastructure migration"]
         type: "multiple"
     },
     {
         question: "Which of the following are the advantages of cloud computing? (Select three)",
         options: ["Allocate a few months of planning for your infrastructure capacity needs","Trade capital expense for variable expense", "Benefit from massive economies of scale", "Go global in minutes and deploy applications in multiple regions around the world with just a few clicks"],
-        answer: ["Go global in minutes and deploy applications in multiple regions around the world with just a few clicks", "Benefit from massive economies of scale", "Trade capital expense for variable expense"],
+        answer: ["Go global in minutes and deploy applications in multiple regions around the world with just a few clicks", "Benefit from massive economies of scale", "Trade capital expense for variable expense"]
         type: "multiple"
     },
     {
         question: "An e-commerce company has deployed an RDS database in a single Availability Zone (AZ). The engineering team wants to ensure that in case of an AZ outage, the database should continue working on the same endpoint without any manual administrative intervention. Which of the following solutions can address this use-case",
         options: ["Configure the database in RDS read replica mode with automatic failover to the standby", "Configure the database in RDS Multi-AZ deployment with automatic failover to the standby", "Provision the database via AWS CloudFormation", "Deploy the database via AWS Elastic Beanstalk"],
-        answer: ["Configure the database in RDS Multi-AZ deployment with automatic failover to the standby"],
+        answer: ["Configure the database in RDS Multi-AZ deployment with automatic failover to the standby"]
         type: "single"
     },
     {
         question: "A financial services company wants to ensure that its AWS account activity meets the governance, compliance and auditing norms. As a Cloud Practitioner, which AWS service would you recommend for this use-case?",
         options: ["AWS CloudTrail", "AWS Trusted Advisor", "Amazon CloudWatch", "AWS Config"],
-        answer: ["AWS CloudTrail"],
+        answer: ["AWS CloudTrail"]
         type: "single"
     },
     {
         question: "Which of the following AWS Support plans provide access to only core checks from the AWS Trusted Advisor Best Practice Checks? (Select two)",
         options: ["AWS Business Support", "AWS Enterprise Support", "AWS Basic Support", "AWS Developer Support", "AWS Enterprise On-Ramp Support"],
-        answer: ["AWS Developer Support", "AWS Basic Support"],
+        answer: ["AWS Developer Support", "AWS Basic Support"]
         type: "multiple"
     },
     {
         question: "According to the AWS Cloud Adoption Framework (AWS CAF), what are two tasks that a company should perform when planning to migrate to the AWS Cloud and aiming to become more responsive to customer inquiries and feedback as part of their organizational transformation? (Select two)",
         options: ["Leverage legacy infrastructure for cost efficiencies", "Organize your teams around bureaucratic design principles", "Create new analytical insights with existing products and services", "Leverage agile methods to rapidly iterate and evolve", "Organize your teams around products and value streams"],
-        answer: ["Organize your teams around products and value streams", "Leverage agile methods to rapidly iterate and evolve"],
+        answer: ["Organize your teams around products and value streams", "Leverage agile methods to rapidly iterate and evolve"]
         type: "multiple"
     },
     {
         question: "A company wants to move to AWS cloud and release new features with quick iterations by utilizing relevant AWS services whenever required. Which of the following characteristics of AWS Cloud does it want to leverage?",
         options: ["Reliability", "Elasticity", "Agility", "Scalability"],
-        answer: ["Agility"],
+        answer: ["Agility"]
         type: "multiple"
     },
     {
         question: "A multi-national corporation wants to get expert professional advice on migrating to AWS and managing their applications on AWS Cloud. Which of the following entities would you recommend for this engagement?",
         options: ["APN Technology Partner", "Concierge Support Team", "APN Consulting Partner", "AWS Trusted Advisor"],
-        answer: ["APN Consulting Partner"],
+        answer: ["APN Consulting Partner"]
         type: "single"
-    },
+    }
+],
+
+// Billing and Pricing
+[
     {
         question: "Which AWS service will help you receive alerts when the reservation utilization falls below the defined threshold?",
         options: ["AWS Budgets", "AWS Trusted Advisor", "AWS Pricing Calculator", "AWS CloudTrail"],
-        answer: ["AWS Budgets"],
+        answer: ["AWS Budgets"]
         type: "single"
     },
     {
@@ -257,7 +267,12 @@ const questions = [
         options: ["60 seconds", "30 seconds", "300 seconds", "600 seconds"],
         answer: ["60 seconds"],
         type: "single"
-    },
+    }
+],
+
+// Technology
+
+[
     {
         question: "Which AWS services can be used to facilitate organizational change management, part of the Reliability pillar of AWS Well-Architected Framework? (Select three)",
         options: ["AWS Config", "Amazon GuardDuty", "Amazon CloudWatch", "AWS CloudTrail", "Amazon Inspector"],
@@ -389,137 +404,6 @@ const questions = [
         answer: ["Amazon Simple Storage Service (Amazon S3)", "Amazon Elastic File System (Amazon EFS)"],
         type: "multiple"
     }
-];
+]
 
-// Function to shuffle an array
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-
-// Shuffle the questions and options
-shuffleArray(questions);
-questions.forEach(question => shuffleArray(question.options));
-
-// Variables for quiz functionality
-let currentQuestionIndex = 0;
-let timerInterval;
-const questionsContainer = document.getElementById("questions-container");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-const revealBtn = document.getElementById("reveal-btn"); // Button for manual reveal
-
-// Function to load a question
-function loadQuestion(index) {
-    const questionObj = questions[index];
-    questionsContainer.innerHTML = "";
-
-    // Display question number
-    const questionNumber = document.createElement("p");
-    questionNumber.textContent = `Question ${index + 1} of ${questions.length}`;
-    questionNumber.classList.add("question-number");
-    questionsContainer.appendChild(questionNumber);
-
-    // Display question text
-    const questionText = document.createElement("p");
-    questionText.textContent = questionObj.question;
-    questionsContainer.appendChild(questionText);
-
-    const optionsContainer = document.createElement("div");
-    optionsContainer.classList.add("options");
-
-    questionObj.options.forEach((option, i) => {
-        const optionDiv = document.createElement("div");
-        const optionInput = document.createElement("input");
-        optionInput.type = questionObj.type === "multiple" ? "checkbox" : "radio";
-        optionInput.name = "option";
-        optionInput.value = option;
-        optionInput.id = `option-${index}-${i}`;
-
-        const optionLabel = document.createElement("label");
-        optionLabel.htmlFor = optionInput.id;
-        optionLabel.textContent = option;
-
-        optionDiv.appendChild(optionInput);
-        optionDiv.appendChild(optionLabel);
-        optionsContainer.appendChild(optionDiv);
-    });
-
-    questionsContainer.appendChild(optionsContainer);
-    displayTimer();
-    revealBtn.style.display = "block"; // Show the reveal button
-}
-
-// Function to display the timer
-function displayTimer() {
-    const timerElement = document.createElement("div");
-    timerElement.classList.add("timer");
-    timerElement.textContent = "Time left: 1:30";
-
-    let timeLeft = 90; // 1.5 minutes in seconds
-    clearInterval(timerInterval);
-
-    timerInterval = setInterval(() => {
-        timeLeft--;
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        timerElement.textContent = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            revealAnswer(); // Reveal answer when time elapses
-        }
-    }, 1000);
-
-    questionsContainer.appendChild(timerElement);
-}
-
-// Function to reveal the correct answer
-function revealAnswer() {
-    const questionObj = questions[currentQuestionIndex];
-    const correctAnswerElement = document.createElement("div");
-    correctAnswerElement.classList.add("correct-answer");
-
-    if (questionObj.type === "multiple") {
-        correctAnswerElement.textContent = `Correct answers: ${questionObj.answer.join(", ")}`;
-    } else {
-        correctAnswerElement.textContent = `Correct answer: ${questionObj.answer[0]}`;
-    }
-
-    questionsContainer.appendChild(correctAnswerElement);
-    revealBtn.style.display = "none"; // Hide reveal button after showing answer
-}
-
-// Add functionality to the manual reveal button
-revealBtn.addEventListener("click", () => {
-    clearInterval(timerInterval); // Stop the timer
-    revealAnswer(); // Reveal the answer
-});
-
-// Navigation button functionality
-prevBtn.addEventListener("click", () => {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        loadQuestion(currentQuestionIndex);
-        nextBtn.disabled = false;
-    }
-    if (currentQuestionIndex === 0) {
-        prevBtn.disabled = true;
-    }
-});
-
-nextBtn.addEventListener("click", () => {
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        loadQuestion(currentQuestionIndex);
-        prevBtn.disabled = false;
-    }
-    if (currentQuestionIndex === questions.length - 1) {
-        nextBtn.disabled = true;
-    }
-});
-
-// Initial load
-loadQuestion(currentQuestionIndex);
+]
