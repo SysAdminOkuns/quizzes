@@ -192,9 +192,9 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((data) => {
         if (data.status === "success") {
           alert("Response submitted successfully!");
-          responseForm.reset();
-          currentQuestionIndex = 0; // Reset to the first question
-          loadQuestion(currentQuestionIndex); // Load the first question again
+        //   responseForm.reset();
+        //   currentQuestionIndex = 0; // Reset to the first question
+        //   loadQuestion(currentQuestionIndex); // Load the first question again
         } else {
           alert("There was a problem submitting your response.");
         }
