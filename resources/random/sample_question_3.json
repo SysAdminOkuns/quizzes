@@ -1,5 +1,7 @@
-// Questions Data Structure
-const questions = [
+
+// Technology
+
+[
     {
         question: "Which of the following is the best way to protect your data from accidental deletion on Amazon S3?",
         options: ["Amazon S3 Transfer Acceleration (Amazon S3TA)", "Amazon S3 storage classes", "Amazon S3 lifecycle configuration", "Amazon S3 Versioning"],
@@ -191,7 +193,11 @@ const questions = [
         options: ["Auto Scaling group scales out and adds more number of Amazon EC2 instances to match an increase in demand", "Auto Scaling group scales up and upgrades to a more powerful Amazon EC2 instance to match an increase in demand", "Auto Scaling group scales down and downgrades to a less powerful Amazon EC2 instance to match a decrease in demand", "Auto Scaling group scales down and reduces the number of Amazon EC2 instances to match a decrease in demand", "Auto Scaling group scales in and reduces the number of Amazon EC2 instances to match a decrease in demand"],
         answer: ["Auto Scaling group scales out and adds more number of Amazon EC2 instances to match an increase in demand", "Auto Scaling group scales in and reduces the number of Amazon EC2 instances to match a decrease in demand"],
         type: "multiple"
-    },
+    }
+],
+
+// Billing and Pricing
+[
     {
         question: "A research group wants to provision an Amazon Elastic Compute Cloud (Amazon EC2) instance for a flexible application that can be interrupted. As a Cloud Practitioner, which of the following would you recommend as the MOST cost-optimal option?",
         options: ["Spot Instance", "On-Demand Instance", "Reserved Instance (RI)", "Dedicated Host"],
@@ -251,7 +257,11 @@ const questions = [
         options: ["AWS Shield Advanced is a free service for AWS Business Support plan", "AWS Shield Advanced is a free service for AWS Enterprise Support plan", "AWS Shield Advanced is a free service for all AWS Support plans", "AWS Shield Advanced offers protection against higher fees that could result from a DDoS attack"],
         answer: ["AWS Shield Advanced offers protection against higher fees that could result from a DDoS attack"],
         type: "single"
-    },
+    }
+],
+
+//Cloud Concept
+[
     {
         question: "An IT company is on a cost-optimization spree and wants to identify all Amazon Elastic Compute Cloud (Amazon EC2) instances that are under-utilized. Which AWS services can be used off-the-shelf to address this use-case without needing any manual configurations? (Select two)",
         options: ["AWS Cost Explorer", "AWS Cost & Usage Report (AWS CUR)", "AWS Trusted Advisor", "AWS Budgets", "Amazon CloudWatch"],
@@ -305,7 +315,11 @@ const questions = [
         options: ["AWS Marketplace", "AWS Knowledge Center", "AWS Health Dashboard - service health", "AWS Support Center"],
         answer: ["AWS Knowledge Center"],
         type: "single"
-    },
+    }
+],
+
+//Security and Compliance
+[
     {
         question: "According to the AWS Shared Responsibility Model, which of the following are the responsibilities of the customer? (Select two)",
         options: ["Operating system patches and updates of an Amazon Elastic Compute Cloud (Amazon EC2) instance", "AWS Global Network Security", "Ensuring AWS employees cannot access customer data", "Compliance validation of Cloud infrastructure"],
@@ -390,137 +404,4 @@ const questions = [
         answer: ["Rotate credentials regularly", "Enable multi-factor authentication (MFA) for all users"],
         type: "multiple"
     }
-];
-
-// Function to shuffle an array
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-
-// Shuffle the questions and options
-shuffleArray(questions);
-questions.forEach(question => shuffleArray(question.options));
-
-// Variables for quiz functionality
-let currentQuestionIndex = 0;
-let timerInterval;
-const questionsContainer = document.getElementById("questions-container");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-const revealBtn = document.getElementById("reveal-btn"); // Button for manual reveal
-
-// Function to load a question
-function loadQuestion(index) {
-    const questionObj = questions[index];
-    questionsContainer.innerHTML = "";
-
-    // Display question number
-    const questionNumber = document.createElement("p");
-    questionNumber.textContent = `Question ${index + 1} of ${questions.length}`;
-    questionNumber.classList.add("question-number");
-    questionsContainer.appendChild(questionNumber);
-
-    // Display question text
-    const questionText = document.createElement("p");
-    questionText.textContent = questionObj.question;
-    questionsContainer.appendChild(questionText);
-
-    const optionsContainer = document.createElement("div");
-    optionsContainer.classList.add("options");
-
-    questionObj.options.forEach((option, i) => {
-        const optionDiv = document.createElement("div");
-        const optionInput = document.createElement("input");
-        optionInput.type = questionObj.type === "multiple" ? "checkbox" : "radio";
-        optionInput.name = "option";
-        optionInput.value = option;
-        optionInput.id = `option-${index}-${i}`;
-
-        const optionLabel = document.createElement("label");
-        optionLabel.htmlFor = optionInput.id;
-        optionLabel.textContent = option;
-
-        optionDiv.appendChild(optionInput);
-        optionDiv.appendChild(optionLabel);
-        optionsContainer.appendChild(optionDiv);
-    });
-
-    questionsContainer.appendChild(optionsContainer);
-    displayTimer();
-    revealBtn.style.display = "block"; // Show the reveal button
-}
-
-// Function to display the timer
-function displayTimer() {
-    const timerElement = document.createElement("div");
-    timerElement.classList.add("timer");
-    timerElement.textContent = "Time left: 1:30";
-
-    let timeLeft = 90; // 1.5 minutes in seconds
-    clearInterval(timerInterval);
-
-    timerInterval = setInterval(() => {
-        timeLeft--;
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        timerElement.textContent = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            revealAnswer(); // Reveal answer when time elapses
-        }
-    }, 1000);
-
-    questionsContainer.appendChild(timerElement);
-}
-
-// Function to reveal the correct answer
-function revealAnswer() {
-    const questionObj = questions[currentQuestionIndex];
-    const correctAnswerElement = document.createElement("div");
-    correctAnswerElement.classList.add("correct-answer");
-
-    if (questionObj.type === "multiple") {
-        correctAnswerElement.textContent = `Correct answers: ${questionObj.answer.join(", ")}`;
-    } else {
-        correctAnswerElement.textContent = `Correct answer: ${questionObj.answer[0]}`;
-    }
-
-    questionsContainer.appendChild(correctAnswerElement);
-    revealBtn.style.display = "none"; // Hide reveal button after showing answer
-}
-
-// Add functionality to the manual reveal button
-revealBtn.addEventListener("click", () => {
-    clearInterval(timerInterval); // Stop the timer
-    revealAnswer(); // Reveal the answer
-});
-
-// Navigation button functionality
-prevBtn.addEventListener("click", () => {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        loadQuestion(currentQuestionIndex);
-        nextBtn.disabled = false;
-    }
-    if (currentQuestionIndex === 0) {
-        prevBtn.disabled = true;
-    }
-});
-
-nextBtn.addEventListener("click", () => {
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        loadQuestion(currentQuestionIndex);
-        prevBtn.disabled = false;
-    }
-    if (currentQuestionIndex === questions.length - 1) {
-        nextBtn.disabled = true;
-    }
-});
-
-// Initial load
-loadQuestion(currentQuestionIndex);
+]
